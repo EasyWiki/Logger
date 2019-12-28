@@ -1,6 +1,9 @@
 const defaultOptions : LoggerOptions = {
     addDate: true,
-    logErrors: true
+    logErrors: false,
+    maxEnties: 100000,
+    logFolder: "logs",
+    logErrorsInFile: true
 }
 
 export function OptionBuilder(options?: LoggerOptions)
@@ -22,13 +25,13 @@ function Merge(options1: any, options2: any)
     
     for (const key in keys)
     {
-        if (!options2[key])
+        if (!options2[keys[key]])
         {
-            newOptions[key] = options1[key];
+            newOptions[keys[key]] = options1[keys[key]];
         }
         else
         {
-            newOptions[key] = options2;
+            newOptions[keys[key]] = options2;
         }
     }
 
