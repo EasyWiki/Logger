@@ -23,15 +23,16 @@ function Merge(options1: any, options2: any)
     const keys = Object.keys(options1);
     let newOptions = {} as any;
     
-    for (const key in keys)
+    for (const i in keys)
     {
-        if (!options2[keys[key]])
+        const key = keys[i];
+        if (options2.hasOwnProperty(key))
         {
-            newOptions[keys[key]] = options1[keys[key]];
+            newOptions[key] = options2[key];
         }
         else
         {
-            newOptions[keys[key]] = options2;
+            newOptions[key] = options1[key];
         }
     }
 
