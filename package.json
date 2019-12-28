@@ -1,0 +1,25 @@
+{
+  "name": "@easywiki/logger",
+  "version": "0.0.1",
+  "description": "A logger module for easywiki",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EasyWiki/Logger.git"
+  },
+  "keywords": [
+    "Logger",
+    "EasyWiki"
+  ],
+  "author": "EasyWiki",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EasyWiki/Logger/issues"
+  },
+  "homepage": "https://github.com/EasyWiki/Logger#readme"
+}
