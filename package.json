@@ -24,9 +24,11 @@
   },
   "homepage": "https://github.com/EasyWiki/Logger#readme",
   "dependencies": {
+    "@easywiki/betterfilesystem": "0.1.0",
     "moment": "^2.24.0"
   },
   "devDependencies": {
-    "@types/moment": "^2.13.0"
+    "@types/moment": "^2.13.0",
+    "@types/node": "^13.1.1"
   }
 }
