@@ -1,8 +1,16 @@
 import Colors from './Colors';
+import { OptionBuilder } from './OptionBuilder';
 
 export class Logger
 {
     public static Logger : Logger;
+
+    private _options : LoggerOptions;
+
+    private constructor(options: LoggerOptions)
+    {
+        this._options = options;
+    }
 
     public Log(origin: string, message: string)
     {
@@ -27,14 +35,19 @@ export class Logger
 
         if(error)
         {
-            console.log(error.message);
-            console.log(error.stack);
+            if(this._options.logErrors)
+            {
+                console.log(Colors.Foreground.Red + error.stack + Colors.Reset);
+            }
         }
     }
 
-    private static Create()
+    private static Create(options?: LoggerOptions)
     {
-        this.Logger = new Logger();
-        return this.Logger;
+        if(!this.Logger)
+        {
+            this.Logger = new Logger(OptionBuilder(options));
+            return this.Logger;
+        }
     }
 }
