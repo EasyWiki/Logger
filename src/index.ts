@@ -1,5 +1,6 @@
 import Colors from './Colors';
 import { OptionBuilder } from './OptionBuilder';
+import moment from 'moment';
 
 export class Logger
 {
@@ -14,8 +15,8 @@ export class Logger
 
     public Log(origin: string, message: string)
     {
-        const cEntry = Colors.Foreground.Yellow + origin + Colors.Reset + ": " + message;
-        const entry = origin + ": " + message;
+        const cEntry = Colors.Foreground.Yellow + this.GetDateString() + origin + Colors.Reset + ": " + message;
+        const entry = this.GetDateString() + origin + ": " + message;
 
         console.log(cEntry);
 
@@ -24,10 +25,10 @@ export class Logger
 
     public Error(origin: string, message: string, error?: Error)
     {
-        const cEntry = Colors.Background.Red + Colors.Foreground.White + origin + 
-            Colors.Reset + ": " + message;
+        const cEntry = Colors.Foreground.Red + this.GetDateString() +
+            Colors.Background.Red + Colors.Foreground.White + origin + Colors.Reset + ": " + message;
 
-        const entry = origin + ": " + message;
+        const entry = this.GetDateString() + origin + ": " + message;
 
         console.log(cEntry);
 
@@ -40,6 +41,14 @@ export class Logger
                 console.log(Colors.Foreground.Red + error.stack + Colors.Reset);
             }
         }
+    }
+
+    private GetDateString(format = "DD/MM/YYYY HH:mm:ss")
+    {
+        if(this._options.addDate)
+            return "[" + moment().format(format) + "] ";
+        else
+            return "";
     }
 
     private static Create(options?: LoggerOptions)
